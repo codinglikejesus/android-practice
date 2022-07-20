@@ -19,8 +19,7 @@
             android:id="@+id/event_name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mitä"
-            android:text="Bänditreenit" />
+            android:hint="Mitä" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,8 +35,7 @@
             android:id="@+id/event_location_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Missä"
-            android:text="Laru" />
+            android:hint="Missä" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -53,8 +51,7 @@
             android:id="@+id/event_participants_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ketä"
-            android:text="Idols" />
+            android:hint="Ketä" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText

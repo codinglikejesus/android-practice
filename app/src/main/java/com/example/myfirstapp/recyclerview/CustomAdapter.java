@@ -1,10 +1,12 @@
 package com.example.myfirstapp.recyclerview;
 
+import android.content.Intent;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfirstapp.DayActivity;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.databinding.TextRowItemBinding;
 import com.example.myfirstapp.db.entities.Booking;
@@ -23,8 +26,6 @@ import java.util.List;
 
 public class CustomAdapter extends ListAdapter<Booking, CustomAdapter.ViewHolder> {
 
-
-    private List<Booking> mBookings;
     public CustomAdapter() {
         super(new BookingDiffCallback());
     }
@@ -48,10 +49,18 @@ public class CustomAdapter extends ListAdapter<Booking, CustomAdapter.ViewHolder
         Booking booking = this.getItem(position);
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.bind(booking);
+        viewHolder.bind(createOnClickListener(booking.getId()), booking);
 
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
+
+    private View.OnClickListener createOnClickListener(int bookingId){
+        return (v -> {
+            Intent intent = new Intent(v.getContext(), DayActivity.class);
+            intent.putExtra("BOOKING_ID", bookingId);
+            v.getContext().startActivity(intent);
+        });
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextRowItemBinding binding;
@@ -61,8 +70,9 @@ public class CustomAdapter extends ListAdapter<Booking, CustomAdapter.ViewHolder
             this.binding = binding;
         }
 
-        void bind(Booking booking){
+        void bind(View.OnClickListener listener, Booking booking){
             binding.setBooking(booking);
+            binding.setClickListener(listener);
             binding.executePendingBindings();
         }
     }

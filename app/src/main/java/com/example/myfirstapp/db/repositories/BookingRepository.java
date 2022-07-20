@@ -39,4 +39,7 @@ public class BookingRepository {
         });
 
     }
+    public LiveData<Booking> getBookingById(int bookingId){
+        return this.bookingDao.getById(bookingId);
+    }
 }

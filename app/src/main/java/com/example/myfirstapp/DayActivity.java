@@ -31,20 +31,32 @@ public class DayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day);
         this.viewModel = new ViewModelProvider(this, factory).get(BookingFormViewModel.class);
         Intent intent = getIntent();
-        long message = intent.getLongExtra(MainActivity.EXTRA_MESSAGE, 0);
-        Date date = new Date(message);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = sdf.format(date);
-
-        // Capture the layout's TextView and set the string as its text
+        long timestamp = intent.getLongExtra("TIMESTAMP", 0);
+        int bookingId = intent.getIntExtra("BOOKING_ID", -1);
         EditText dateEdit = (EditText) findViewById(R.id.editTextDate3);
         EditText locationEdit = (EditText) findViewById(R.id.event_location_input);
         EditText nameEdit = (EditText) findViewById(R.id.event_name_input);
-        Log.d("DayActivity", dateString);
-        dateEdit.setText(dateString);
-        viewModel.setDate(dateString);
-        viewModel.setLocation(locationEdit.getText().toString());
-        viewModel.setEventName(nameEdit.getText().toString());
+
+        if(bookingId != -1){
+            this.viewModel.getBookingById(bookingId).observe(this, booking -> {
+                Date date = new Date(booking.getTimestampStart());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dateString = sdf.format(date);
+                dateEdit.setText(dateString);
+                locationEdit.setText(booking.getLocation());
+                nameEdit.setText(booking.getName());
+            });
+            return;
+        }
+
+        if(timestamp != 0) {
+            Date date = new Date(timestamp);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = sdf.format(date);
+            dateEdit.setText(dateString);
+            return;
+        }
+
 
         dateEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -75,5 +87,6 @@ public class DayActivity extends AppCompatActivity {
 
     public void addEvent(View view){
         viewModel.addBooking();
+        finish();
     }
 }

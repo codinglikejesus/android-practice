@@ -28,7 +28,7 @@ public class BookingsViewModel extends ViewModel {
         super();
         this.bookingRepository = bookingRepository;
         bookings = Transformations.switchMap(mutableBookingParam, timestamp -> {
-            long endDate =  timestamp + TimeUnit.DAYS.toMillis(1);
+            long endDate =  timestamp + TimeUnit.DAYS.toMillis(1) - 1;
             return this.bookingRepository.getBookingsByDay(timestamp, endDate);
         });
         this.setSelectedDay(getStartOfDayInMillis());

@@ -17,6 +17,9 @@ public interface BookingDao {
     @Query("SELECT * FROM Booking WHERE timestampStart BETWEEN :daystart AND :dayend")
     LiveData<List<Booking>> loadAllByDay(long daystart, long dayend);
 
+    @Query("SELECT * FROM Booking WHERE id = :id")
+    LiveData<Booking> getById(int id);
+
     @Insert
     void insertAll(Booking... bookings);
 }
