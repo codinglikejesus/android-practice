@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.example.myfirstapp.db.AppDatabase;
 import com.example.myfirstapp.db.repositories.BookingRepository;
-import com.example.myfirstapp.viewmodels.BookingFormViewModelFactory;
-import com.example.myfirstapp.viewmodels.BookingsViewModelFactory;
+import com.example.myfirstapp.bookingform.BookingFormViewModelFactory;
+import com.example.myfirstapp.bookinglistfragment.BookingsViewModelFactory;
 
 public class InjectorUtils {
 

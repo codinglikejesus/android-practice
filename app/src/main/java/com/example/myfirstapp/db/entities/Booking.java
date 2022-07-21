@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 public class Booking {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String name;
     private long timestampStart;
     private long timestampEnd;
@@ -30,6 +29,9 @@ public class Booking {
     }
 
     public long getTimestampStart(){ return this.timestampStart; }
+    public String getTimestampStartString(){return Long.toString(this.timestampStart);}
+    public void setTimestampStartString(String timestamp){this.timestampStart = Long.parseLong(timestamp);}
+    public void setTimestampStart(long timestampStart){this.timestampStart = timestampStart;}
 
     public long getTimestampEnd(){ return this.timestampEnd; }
 
@@ -38,5 +40,6 @@ public class Booking {
     public void setName(String name){ this.name = name; }
 
     public String getLocation() { return this.location; }
+    public void setLocation(String location) { this.location = location; }
 
 }

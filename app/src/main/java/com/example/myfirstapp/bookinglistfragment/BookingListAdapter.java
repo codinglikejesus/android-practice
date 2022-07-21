@@ -1,32 +1,25 @@
-package com.example.myfirstapp.recyclerview;
+package com.example.myfirstapp.bookinglistfragment;
 
 import android.content.Intent;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfirstapp.DayActivity;
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.bookingform.BookingFormActivity;
 import com.example.myfirstapp.databinding.TextRowItemBinding;
 import com.example.myfirstapp.db.entities.Booking;
 
-import java.util.ArrayList;
-import java.util.List;
+public class BookingListAdapter extends ListAdapter<Booking, BookingListAdapter.ViewHolder> {
 
-public class CustomAdapter extends ListAdapter<Booking, CustomAdapter.ViewHolder> {
-
-    public CustomAdapter() {
+    public BookingListAdapter() {
         super(new BookingDiffCallback());
     }
 
@@ -56,7 +49,7 @@ public class CustomAdapter extends ListAdapter<Booking, CustomAdapter.ViewHolder
 
     private View.OnClickListener createOnClickListener(int bookingId){
         return (v -> {
-            Intent intent = new Intent(v.getContext(), DayActivity.class);
+            Intent intent = new Intent(v.getContext(), BookingFormActivity.class);
             intent.putExtra("BOOKING_ID", bookingId);
             v.getContext().startActivity(intent);
         });

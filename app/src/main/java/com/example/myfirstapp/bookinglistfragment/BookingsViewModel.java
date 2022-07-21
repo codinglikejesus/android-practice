@@ -1,9 +1,6 @@
-package com.example.myfirstapp.viewmodels;
-
-import android.util.Log;
+package com.example.myfirstapp.bookinglistfragment;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -12,11 +9,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.myfirstapp.db.entities.Booking;
 import com.example.myfirstapp.db.repositories.BookingRepository;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 public class BookingsViewModel extends ViewModel {

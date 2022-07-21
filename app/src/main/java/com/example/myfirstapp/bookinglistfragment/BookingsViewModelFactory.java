@@ -1,15 +1,15 @@
-package com.example.myfirstapp.viewmodels;
+package com.example.myfirstapp.bookinglistfragment;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myfirstapp.databinding.ActivityBookingFormBinding;
 import com.example.myfirstapp.db.repositories.BookingRepository;
-
-import java.util.Date;
 
 public class BookingsViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private BookingRepository repository;
+
     public BookingsViewModelFactory(@NonNull BookingRepository repository){
         super();
         this.repository = repository;

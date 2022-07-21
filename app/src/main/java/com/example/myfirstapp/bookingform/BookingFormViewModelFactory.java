@@ -1,12 +1,10 @@
-package com.example.myfirstapp.viewmodels;
+package com.example.myfirstapp.bookingform;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myfirstapp.db.repositories.BookingRepository;
-
-import java.util.Date;
 
 public class BookingFormViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private BookingRepository repository;

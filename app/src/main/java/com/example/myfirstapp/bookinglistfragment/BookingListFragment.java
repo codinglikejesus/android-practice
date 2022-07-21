@@ -1,59 +1,49 @@
-package com.example.myfirstapp.recyclerview;
+package com.example.myfirstapp.bookinglistfragment;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 
 import com.example.myfirstapp.MainActivity;
 import com.example.myfirstapp.R;
-import com.example.myfirstapp.db.AppDatabase;
-import com.example.myfirstapp.db.daos.BookingDao;
 import com.example.myfirstapp.db.entities.Booking;
 import com.example.myfirstapp.utils.InjectorUtils;
-import com.example.myfirstapp.viewmodels.BookingsViewModel;
-import com.example.myfirstapp.viewmodels.BookingsViewModelFactory;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BookingsFragment#newInstance} factory method to
+ * Use the {@link BookingListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookingsFragment extends Fragment {
+public class BookingListFragment extends Fragment {
 
 
     private BookingsViewModel viewModel;
 
     protected RecyclerView mRecyclerView;
-    protected CustomAdapter mAdapter;
+    protected BookingListAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
 
 
-    public BookingsFragment() {
+    public BookingListFragment() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static BookingsFragment newInstance() {
-        BookingsFragment fragment = new BookingsFragment();
+    public static BookingListFragment newInstance() {
+        BookingListFragment fragment = new BookingListFragment();
         return fragment;
     }
 
@@ -73,7 +63,7 @@ public class BookingsFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         this.viewModel = new ViewModelProvider(this, factory).get(BookingsViewModel.class);
-        mAdapter = new CustomAdapter();
+        mAdapter = new BookingListAdapter();
         subscribeUi(mAdapter);
         mRecyclerView.setAdapter(mAdapter);
         MainActivity parentActivity = (MainActivity) this.getActivity();
